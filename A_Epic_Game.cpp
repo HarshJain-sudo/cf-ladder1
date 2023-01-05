@@ -1,26 +1,19 @@
-#include<bits/stdc++.h>
+     
+#include <iostream>
 using namespace std;
-int main(){
-	int a,b,n;
-    cin>>a>>b>>n;
-    int num = a;
-    int k =0;
-    while(__gcd(num,n)<=n){
-       n-=num;
-       if(k%2==0){
-        num = b;
-       }
-       else{
-        num = a;
-       }
-       k++;
+int gcd(int x, int y)
+{
+    return (x==0)? y : gcd(y % x, x);
+}
+int main()
+{
+    int a, b, n;
+    cin >> a >> b >> n;
+    int k = 0;
+    while (n >= 0)
+    {
+        ++k;
+        n -= gcd((k & 1) ? a : b, n);
     }
-    // cout<<k<<endl;
-    if(k%2){
-        cout<<"0";
-    }
-    else{
-        cout<<"1";
-    }
-    cout<<endl;
+    if (k & 1) cout << 1; else cout << 0;
 }
